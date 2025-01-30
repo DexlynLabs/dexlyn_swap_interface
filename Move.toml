@@ -1,0 +1,28 @@
+[package]
+name = "dexlyn_swap"
+version = "0.1.0"
+upgrade_policy = "compatible"
+
+[addresses]
+dexlyn_swap = "0x882ef97cda45facb668b27eb1ae426753bddc5830b65558be6740b80cea4906c"
+
+# Admins
+dao_admin = "0x692b5ac97adadb84faa4057ddd62b08472a9d1c1f5c79445e542a80b68fb9695"
+emergency_admin = "0x692b5ac97adadb84faa4057ddd62b08472a9d1c1f5c79445e542a80b68fb9695"
+fee_admin = "0x692b5ac97adadb84faa4057ddd62b08472a9d1c1f5c79445e542a80b68fb9695"
+
+# Resource accounts: should be the same as @dexlyn_swap_lp in lp_coin
+dexlyn_swap_pool_account = "0xf7046fced0d57aa8dcc74e6f7213be6602d029a1e75fc619b4e1c9706f0c6b02"
+
+# Addresses for tests.
+test_coin_admin = "0x11"
+test_helpers = "0x12"
+test_admin_2 = "0xde18e0bb33eedc4e88f1823a64879074d84269004616be095d6cc0591df5ffb1"
+
+[dependencies.DexlynswapLP]
+local = "./dexlyn_swap_lp/"
+
+[dependencies.SupraFramework]
+git = 'https://github.com/Entropy-Foundation/aptos-core.git'
+subdir = 'aptos-move/framework/supra-framework'
+rev = 'dev'

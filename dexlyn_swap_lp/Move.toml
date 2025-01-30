@@ -1,0 +1,12 @@
+[package]
+name = 'DexlynswapLP'
+version = '0.1.0'
+upgrade_policy = "compatible"
+
+[addresses]
+dexlyn_swap_lp = "0xf7046fced0d57aa8dcc74e6f7213be6602d029a1e75fc619b4e1c9706f0c6b02"
+
+[dev-dependencies.MoveStdlib]
+git = 'https://github.com/Entropy-Foundation/aptos-core.git'
+subdir = "aptos-move/framework/move-stdlib"
+rev = 'dev'
