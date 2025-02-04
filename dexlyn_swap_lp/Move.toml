@@ -4,7 +4,7 @@ version = '0.1.0'
 upgrade_policy = "compatible"
 
 [addresses]
-dexlyn_swap_lp = "0xf7046fced0d57aa8dcc74e6f7213be6602d029a1e75fc619b4e1c9706f0c6b02"
+dexlyn_swap_lp = "0x1abb3af119e2854f770af9abdd1bc3bd4c607a2334d3302f429f58f3fbde1d18"
 
 [dev-dependencies.MoveStdlib]
 git = 'https://github.com/Entropy-Foundation/aptos-core.git'
