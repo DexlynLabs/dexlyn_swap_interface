@@ -4,15 +4,15 @@ version = "0.1.0"
 upgrade_policy = "compatible"
 
 [addresses]
-dexlyn_swap = "0x819322ee14f234cb912daaf62d50ecdef1b5d4a7ae9622d3c00b0b970cb295a0"
+dexlyn_swap = "0x4496a672452b0bf5eff5e1616ebfaf7695e14b02a12ed211dd4f28ac38a5d54c"
 
 # Admins
-dao_admin = "0x9a4dd870a230557e9551a1eaab48c19c76f6b1c34fd465b8bcedb64dae626cb4"
-emergency_admin = "0x9a4dd870a230557e9551a1eaab48c19c76f6b1c34fd465b8bcedb64dae626cb4"
-fee_admin = "0x9a4dd870a230557e9551a1eaab48c19c76f6b1c34fd465b8bcedb64dae626cb4"
+dao_admin = "0x9764acb8571f0a52c62d9cf42b654dcc1104ecd7c293b4dcfbf9c8cf5385052d"
+emergency_admin = "0x9764acb8571f0a52c62d9cf42b654dcc1104ecd7c293b4dcfbf9c8cf5385052d"
+fee_admin = "0x9764acb8571f0a52c62d9cf42b654dcc1104ecd7c293b4dcfbf9c8cf5385052d"
 
 # Resource accounts: should be the same as @dexlyn_swap_lp in lp_coin
-dexlyn_swap_pool_account = "0x1abb3af119e2854f770af9abdd1bc3bd4c607a2334d3302f429f58f3fbde1d18"
+dexlyn_swap_pool_account = "0xf4c4a507aa6ff75e680ebf8a7f65aeb265751a40dcf60bb0275aa0af7338a46e"
 
 # Addresses for tests.
 test_coin_admin = "0x11"
