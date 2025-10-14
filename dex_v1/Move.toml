@@ -20,7 +20,7 @@ test_helpers = "0x12"
 test_admin_2 = "0xde18e0bb33eedc4e88f1823a64879074d84269004616be095d6cc0591df5ffb1"
 
 [dependencies.DexlynswapLP]
-local = "./dexlyn_swap_lp/"
+local = "dexlyn_swap_lp/"
 
 [dependencies.SupraFramework]
 git = 'https://github.com/Entropy-Foundation/aptos-core.git'
