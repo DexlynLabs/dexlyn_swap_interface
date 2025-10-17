@@ -66,8 +66,8 @@ module dexlyn_clmm::clmm_router {
     ///     - max_amount_b: the max number of asset_b can be consumed by the pool.
     ///     - tick_lower
     ///     - tick_upper
-    ///     - is_open: control whether or not to create a new position or add liquidity on existed position.
-    ///     - index: position index. if `is_open` is true, index is no use.
+    ///     - open_new_position: control whether or not to create a new position or add liquidity on existed position.
+    ///     - index: position index. if `open_new_position` is true, index is no use.
     /// Returns
     native public entry fun add_liquidity_coin_coin<CoinTypeA, CoinTypeB>(
         account: &signer,
@@ -77,7 +77,7 @@ module dexlyn_clmm::clmm_router {
         max_amount_b: u64,
         tick_lower: u64,
         tick_upper: u64,
-        is_open: bool,
+        open_new_position: bool,
         position_index: u64,
     );
 
@@ -90,8 +90,8 @@ module dexlyn_clmm::clmm_router {
     ///     - max_amount_b: the max number of asset_b can be consumed by the pool.
     ///     - tick_lower
     ///     - tick_upper
-    ///     - is_open: control whether or not to create a new position or add liquidity on existed position.
-    ///     - index: position index. if `is_open` is true, index is no use.
+    ///     - open_new_position: control whether or not to create a new position or add liquidity on existed position.
+    ///     - index: position index. if `open_new_position` is true, index is no use.
     /// Returns
     native public entry fun add_liquidity_coin_asset<CoinType>(
         account: &signer,
@@ -101,7 +101,7 @@ module dexlyn_clmm::clmm_router {
         max_amount_b: u64,
         tick_lower: u64,
         tick_upper: u64,
-        is_open: bool,
+        open_new_position: bool,
         position_index: u64,
     );
 
@@ -114,8 +114,8 @@ module dexlyn_clmm::clmm_router {
     ///     - max_amount_b: the max number of asset_b can be consumed by the pool.
     ///     - tick_lower
     ///     - tick_upper
-    ///     - is_open: control whether or not to create a new position or add liquidity on existed position.
-    ///     - index: position index. if `is_open` is true, index is no use.
+    ///     - open_new_position: control whether or not to create a new position or add liquidity on existed position.
+    ///     - index: position index. if `open_new_position` is true, index is no use.
     /// Returns
     native public entry fun add_liquidity(
         account: &signer,
@@ -125,7 +125,7 @@ module dexlyn_clmm::clmm_router {
         max_amount_b: u64,
         tick_lower: u64,
         tick_upper: u64,
-        is_open: bool,
+        open_new_position: bool,
         position_index: u64,
     );
 
@@ -139,8 +139,8 @@ module dexlyn_clmm::clmm_router {
     ///     - fix_amount_a: control whether asset_a or asset_b amount is fixed
     ///     - tick_lower
     ///     - tick_upper
-    ///     - is_open: control whether or not to create a new position or add liquidity on existed position.
-    ///     - index: position index. if `is_open` is true, index is no use.
+    ///     - open_new_position: control whether or not to create a new position or add liquidity on existed position.
+    ///     - index: position index. if `open_new_position` is true, index is no use.
     /// Returns
     native public entry fun add_liquidity_fix_value_coin_coin<CoinTypeA, CoinTypeB>(
         account: &signer,
@@ -150,7 +150,7 @@ module dexlyn_clmm::clmm_router {
         fix_amount_a: bool,
         tick_lower: u64,
         tick_upper: u64,
-        is_open: bool,
+        open_new_position: bool,
         index: u64,
     );
 
@@ -164,8 +164,8 @@ module dexlyn_clmm::clmm_router {
     ///     - fix_amount_a: control whether asset_a or asset_b amount is fixed
     ///     - tick_lower
     ///     - tick_upper
-    ///     - is_open: control whether or not to create a new position or add liquidity on existed position.
-    ///     - index: position index. if `is_open` is true, index is no use.
+    ///     - open_new_position: control whether or not to create a new position or add liquidity on existed position.
+    ///     - index: position index. if `open_new_position` is true, index is no use.
     /// Returns
     native public entry fun add_liquidity_fix_value_coin_asset<CoinType>(
         account: &signer,
@@ -175,7 +175,7 @@ module dexlyn_clmm::clmm_router {
         fix_amount_a: bool,
         tick_lower: u64,
         tick_upper: u64,
-        is_open: bool,
+        open_new_position: bool,
         position_index: u64,
     );
 
@@ -188,8 +188,8 @@ module dexlyn_clmm::clmm_router {
     ///     - fix_amount_a: control whether asset_a or asset_b amount is fixed
     ///     - tick_lower
     ///     - tick_upper
-    ///     - is_open: control whether or not to create a new position or add liquidity on existed position.
-    ///     - index: position index. if `is_open` is true, index is no use.
+    ///     - open_new_position: control whether or not to create a new position or add liquidity on existed position.
+    ///     - index: position index. if `open_new_position` is true, index is no use.
     /// Returns
     native public entry fun add_liquidity_fix_value(
         account: &signer,
@@ -199,7 +199,7 @@ module dexlyn_clmm::clmm_router {
         fix_amount_a: bool,
         tick_lower: u64,
         tick_upper: u64,
-        is_open: bool,
+        open_new_position: bool,
         index: u64,
     );
 
