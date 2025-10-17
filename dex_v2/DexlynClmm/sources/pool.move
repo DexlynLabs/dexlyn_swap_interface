@@ -9,8 +9,7 @@ module dexlyn_clmm::pool {
 
     friend dexlyn_clmm::factory;
 
-
-    struct Pooldetails has drop {
+    struct PoolDetails has drop {
         /// Pool index
         index: u64,
 
@@ -140,7 +139,6 @@ module dexlyn_clmm::pool {
         remainer_amount: u64
     }
 
-
     /// The position's fee result
     struct PositionReward has drop {
         pool_address: address,
@@ -193,6 +191,18 @@ module dexlyn_clmm::pool {
         fix_amount_a: bool,
         position_index: u64
     ): AddLiquidityReceipt;
+
+
+    /// Repay asset for increased liquidity
+    /// params
+    ///     asset_a The asset a
+    ///     asset_b The asset b
+    ///     receipt The add liquidity receipt(hot-patato)
+    native public fun repay_add_liquidity(
+        asset_a: FungibleAsset,
+        asset_b: FungibleAsset,
+        receipt: AddLiquidityReceipt
+    );
 
 
     /// Remove liquidity from pool
@@ -281,6 +291,17 @@ module dexlyn_clmm::pool {
         sqrt_price_limit: u128,
     ): (FungibleAsset, FungibleAsset, FlashSwapReceipt);
 
+    /// Repay for flash swap
+    /// params
+    ///     asset_a The asset a
+    ///     asset_b The asset b
+    /// returns
+    ///     null
+    native public fun repay_flash_swap(
+        asset_a: FungibleAsset,
+        asset_b: FungibleAsset,
+        receipt: FlashSwapReceipt
+    );
 
     /// Deposit reward tokens into a rewarder
     /// Params
@@ -380,7 +401,6 @@ module dexlyn_clmm::pool {
         pos_indices: vector<u64>
     ): vector<Position>;
 
-
     #[view]
     /// Get the tick range for a position by pool address.
     /// pool_address - Pool address.
@@ -427,20 +447,6 @@ module dexlyn_clmm::pool {
     native public fun generate_token_addresses(pool_address: address, position_ids: vector<u64>): vector<address>;
 
     #[view]
-    ///  Get best swap route across multiple pools.
-    /// pool_addresses - Vector of pool addresses.
-    /// a2b - Swap direction.
-    /// by_amount_in - Express swap by amount in or out.
-    /// amount - Amount for swap.
-    /// Returns tuple of (final pool address, CalculatedSwapResult).
-    native public fun swap_routing(
-        pool_addresses: vector<address>,
-        a2b: bool,
-        by_amount_in: bool,
-        amount: u64
-    ): (address, CalculatedSwapResult);
-
-    #[view]
     ///  Get best swap route across multiple pools with more precise control.
     /// pool_addresses - Vector of pool addresses.
     /// a2b - Swap direction.
@@ -448,7 +454,7 @@ module dexlyn_clmm::pool {
     /// fix_amount_out - If true, amount is output amount; if false, amount is input amount.
     /// amount - Amount for swap.
     /// Returns tuple of (final pool address, CalculatedSwapResult).
-    native public fun swap_routing_v2(
+    native public fun swap_routing(
         pool_addresses: vector<address>,
         a2b: bool,
         fix_amount_in: bool,
@@ -473,9 +479,9 @@ module dexlyn_clmm::pool {
 
     #[view]
     /// Get detailed information for multiple pools.
-    /// pool_addresses - vector of pool addresses. If None, fetch details for all pools.
+    /// pool_addresses - Optional vector of pool addresses. If None, fetch details for all pools.
     /// Returns vector of optional Pooldetails (None if pool doesn't exist).
     native public fun get_pool_details(
         pool_addresses: vector<address>
-    ): vector<Option<Pooldetails>>;
+    ): vector<Option<PoolDetails>>;
 }
