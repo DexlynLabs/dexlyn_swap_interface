@@ -484,4 +484,68 @@ module dexlyn_clmm::pool {
     native public fun get_pool_details(
         pool_addresses: vector<address>
     ): vector<Option<PoolDetails>>;
+
+    /// Destructure PoolDetails into its individual fields.
+    /// details - Reference to PoolDetails.
+    /// Returns a tuple of all fields in PoolDetails.
+    native public fun destructure_pool_details(details: &PoolDetails): (
+        u64, address, String, u64, u64, u64, u64, u128, u128, I64, u128, u128, u64, u64, u64, bool, String, address, address
+    );
+
+
+    /// Destructure Tick into its individual fields.
+    /// tick - Reference to Tick.
+    /// Returns a tuple of all fields in Tick.
+    native public fun destructure_tick(tick: &Tick): (
+        I64, u128, I128, u128, u128, u128, vector<u128>
+    );
+
+    /// Destructure Position into its individual fields.
+    /// pos - Reference to Position.
+    /// Returns a tuple of all fields in Position.
+    native public fun destructure_position(pos: &Position): (
+        address, u64, u128, I64, I64, u128, u64, u128, u64, vector<PositionRewarder>
+    );
+
+    /// Destructure PositionRewarder into its individual fields.
+    /// rewarder - Reference to PositionRewarder.
+    /// Returns a tuple of all fields in PositionRewarder.
+    native public fun destructure_position_rewarder(rewarder: &PositionRewarder): (
+        u128, u64
+    );
+
+    /// Destructure FlashSwapReceipt into its individual fields.
+    /// receipt - Reference to FlashSwapReceipt.
+    /// Returns a tuple of all fields in FlashSwapReceipt.
+    native public fun destructure_flash_swap_receipt(receipt: &FlashSwapReceipt): (
+        address, bool, String, u64, u64
+    );
+
+    /// Destructure AddLiquidityReceipt into its individual fields.
+    /// receipt - Reference to AddLiquidityReceipt.
+    /// Returns a tuple of all fields in AddLiquidityReceipt. 
+    native public fun destructure_add_liquidity_receipt(receipt: &AddLiquidityReceipt): (
+        address, u64, u64
+    );
+
+    /// Destructure CalculatedSwapResult into its individual fields.
+    /// result - Reference to CalculatedSwapResult.
+    /// Returns a tuple of all fields in CalculatedSwapResult.
+    native public fun destructure_calculated_swap_result(result: &CalculatedSwapResult): (
+        u64, u64, u64, u64, u128, bool, vector<SwapStepResult>
+    );
+
+    /// Destructure SwapStepResult into its individual fields.
+    /// step - Reference to SwapStepResult.
+    /// Returns a tuple of all fields in SwapStepResult.
+    native public fun destructure_swap_step_result(step: &SwapStepResult): (
+        u128, u128, u128, u64, u64, u64, u64
+    );
+
+    /// Destructure PositionReward into its individual fields.
+    /// reward - Reference to PositionReward.
+    /// Returns a tuple of all fields in PositionReward.
+    native public fun destructure_position_reward(reward: &PositionReward): (
+        address, u64, u64, u64
+    );
 }
