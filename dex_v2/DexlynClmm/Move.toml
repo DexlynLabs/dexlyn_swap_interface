@@ -6,7 +6,7 @@ version = '0.0.2'
 std = "0x1"
 aptos_std = "0x1"
 aptos_framework = "0x1"
-dexlyn_clmm = "0x34287fd1fae969ae6dca12afb9cd6e95da58aa7a1ddbd19a20138729b2996870"
+dexlyn_clmm = "0x48516d04d942d36299e6fb018865f0ac4b1ca37e2a1518ca367c7960c4b30985"
 
 
 [dependencies.AptosToken]
