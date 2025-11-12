@@ -1,4 +1,5 @@
 module dexlyn_swap::router {
+    use std::option::Option;
     use dexlyn_swap_lp::lp_coin::LP;
     use supra_framework::coin::Coin;
 
@@ -74,6 +75,11 @@ module dexlyn_swap::router {
     /// Get current cumulative prices in liquidity pool `X`/`Y`.
     /// Returns (X price, Y price, block_timestamp).
     native public fun get_cumulative_prices<X, Y, Curve>(): (u128, u128, u64);
+
+    #[view]
+    /// Check if the pool for pair `X` and `Y` `Curve` exists or not.
+    /// Returns an option<address> wrapper
+    native public fun get_pool<X, Y, Curve>(): Option<address>;
 
     #[view]
     /// Get reserves of liquidity pool (`X` and `Y`).
