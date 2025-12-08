@@ -165,12 +165,14 @@ module dexlyn_clmm::pool {
     /// Add liquidity on a position by liquidity amount.
     /// anyone can add liquidity on any position, please check the ownership of the position befor call it.
     /// params
+    ///     account The position owner
     ///     pool_address The pool account address
     ///     liqudity The delta liqudity amount
     ///     position_index The position index
     /// return
     ///     receipt The add liquidity receipt(hot-potato)
-    native public fun add_liquidity(
+    native public fun add_liquidity_v2(
+        account: &signer,
         pool_address: address,
         liquidity: u128,
         position_index: u64
@@ -179,13 +181,15 @@ module dexlyn_clmm::pool {
     /// Add liquidity on a position by asset amount.
     /// anyone can add liquidity on any position, please check the ownership of the position befor call it.
     /// params
+    ///     account The position owner
     ///     pool_address The pool account address
     ///     amount The asset amount
     ///     fix_amount_a If true the amount is asset_a else is asset_b
     ///     position_index The position index
     /// return
     ///     receipt The add liquidity receipt(hot-potato)
-    native public fun add_liquidity_fix_asset(
+    native public fun add_liquidity_fix_asset_v2(
+        account: &signer,
         pool_address: address,
         amount: u64,
         fix_amount_a: bool,
