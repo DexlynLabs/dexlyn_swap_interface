@@ -1,0 +1,19 @@
+[package]
+name = 'DexlynClmm'
+version = '0.0.2'
+
+[addresses]
+std = "0x1"
+aptos_std = "0x1"
+aptos_framework = "0x1"
+dexlyn_clmm = "0xc3a610069fa7545cf14e266e849954bf385aca957bb489b1dc069a4baa29b502"
+
+
+[dependencies.AptosToken]
+git = 'https://github.com/Entropy-Foundation/aptos-core.git'
+subdir = 'aptos-move/framework/aptos-token'
+rev = 'dev'
+
+
+[dependencies.IntegerMate]
+local = "../IntegerMate"
