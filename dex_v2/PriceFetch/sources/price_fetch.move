@@ -14,7 +14,7 @@ module dexlyn_price_fetcher::fetch_clmm_price {
     const E_INCORRECT_VALUES: u64 = 0;
     const E_POOL_NOT_EXIST: u64 = 1;
 
-    struct Price {
+    struct Price has drop {
         pool_address: address,
         asset_a_address: address,
         asset_b_address: address,
