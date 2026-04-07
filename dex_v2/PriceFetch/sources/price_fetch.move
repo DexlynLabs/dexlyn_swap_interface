@@ -1,14 +1,5 @@
 module dexlyn_price_fetcher::fetch_clmm_price {
 
-    use std::option;
-    use std::vector;
-
-    use dexlyn_clmm::pool::{destructure_pool_details, get_pool_details};
-    use integer_mate::full_math_u128;
-    use supra_framework::fungible_asset::{Self, Metadata};
-    use supra_framework::object::address_to_object;
-    use supra_framework::timestamp;
-
     const DEFAULT_DECIMAL: u16 = 18;
     const DEFAULT_DECIMAL_PRECISION_9: u64 = 1_000_000_000;
     const E_INCORRECT_VALUES: u64 = 0;
