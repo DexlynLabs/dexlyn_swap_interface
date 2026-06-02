@@ -260,6 +260,55 @@ module dexlyn_clmm::clmm_router {
         asset_addr: address
     );
 
+    /// Claim rewards for Dexlyn rewarder only on behalf of users.
+    /// Params
+    ///     - authority_signer: The rewarder authority signer
+    ///     - user_signer: The position owner signer
+    ///     - pool_address: The pool address
+    ///     - rewarder_index: The rewarder index
+    ///     - pos_index: The position index
+    ///     - asset_addr: The asset address
+    native public entry fun claim_rewarder(
+        authority_signer: &signer,
+        user_signer: &signer,
+        pool_address: address,
+        pos_index: u64,
+        rewarder_index: u8,
+        asset_addr: address
+    );
+
+    /// Update the rewarder emission during an active epoch.
+    /// Params
+    ///     - pool_address
+    ///     - index
+    ///     - emission_per_second
+    ///     - asset_addr: FungibleAsset Reward address
+    /// Returns
+    native public entry fun update_rewarder_emission_during_epoch(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        emission_per_second: u128,
+        asset_addr: address
+    );
+
+    /// Update the rewarder duration (protocol authority or rewarder authority).
+    /// If emission is currently active, this recalculates emission_end_time based on the original start time.
+    /// For duration extensions, it internally tops up the additional amount required for the remaining epoch.
+    /// Params
+    ///     - account: The protocol authority or rewarder authority
+    ///     - pool_address: The address of pool
+    ///     - rewarder_index: rewarder index
+    ///     - duration_seconds: the new duration in seconds
+    /// Return
+    ///     null
+    native public entry fun update_rewarder_duration(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        duration_seconds: u128
+    );
+
     /// Swap by Coin.
     /// Params
     ///     Type:
@@ -323,6 +372,20 @@ module dexlyn_clmm::clmm_router {
         amount: u64
     );
 
+
+    /// Withdraw undistributed rewards for a rewarder (authority only).
+    /// Params
+    ///     - pool_address: pool address.
+    ///     - rewarder_index: the rewarder index(0,1,2).
+    ///     - asset_addr: FungibleAsset Reward address
+    ///     - amount: amount to withdraw
+    native public entry fun withdraw_undistributed_reward(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        asset_addr: address,
+        amount: u64
+    );
 
     /// Update the rewarder emission.
     /// Params
