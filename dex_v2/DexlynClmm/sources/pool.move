@@ -271,6 +271,27 @@ module dexlyn_clmm::pool {
         asset_addr: address
     ): FungibleAsset;
 
+    /// Claim rewards for Dexlyn rewarder only on behalf of users.
+    /// Params
+    ///     - authority_signer: The rewarder authority signer
+    ///     - user_signer: The position owner signer
+    ///     - pool_address: The pool address
+    ///     - position_index: The position index
+    ///     - rewarder_index: The rewarder index
+    ///     - recalculate: Whether to recalculate rewards before claiming
+    ///     - asset_addr: The asset address
+    /// Return
+    ///     The claimed FungibleAsset
+    native public fun claim_rewarder(
+        authority_signer: &signer,
+        user_signer: &signer,
+        pool_address: address,
+        position_index: u64,
+        rewarder_index: u8,
+        recalculate: bool,
+        asset_addr: address
+    ): FungibleAsset;
+
 
     /// Swap output asset and flash loan resource.
     /// Params
@@ -321,6 +342,101 @@ module dexlyn_clmm::pool {
         rewarder_addr: address,
         amount: u64
     );
+
+    /// Start a new rewarder emission epoch (only when no epoch is currently active).
+    /// Params
+    ///     - account The rewarder authority
+    ///     - pool_address The address of pool
+    ///     - rewarder_index The rewarder index
+    ///     - emissions_per_second The asset amount generated every second, as X64
+    ///     - asset_addr The reward asset address
+    /// Return
+    ///     null
+    native public fun update_emission(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        emissions_per_second: u128,
+        asset_addr: address
+    );
+
+    /// Update rewarder emission speed during the current active epoch.
+    /// If the new rate is higher, only the delta required for the remaining epoch is topped up.
+    /// Params
+    ///     - account The rewarder authority
+    ///     - pool_address The address of pool
+    ///     - rewarder_index The rewarder index
+    ///     - emissions_per_second The new emission rate, as X64
+    ///     - asset_addr The reward asset address
+    /// Return
+    ///     null
+    native public fun update_emission_during_epoch(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        emissions_per_second: u128,
+        asset_addr: address
+    );
+
+    /// Transfer the rewarder authority (current authority nominates a pending authority).
+    /// Params
+    ///     - account The current rewarder authority
+    ///     - pool_address The address of pool
+    ///     - rewarder_index The rewarder index
+    ///     - new_authority The pending new authority
+    /// Return
+    ///     null
+    native public fun transfer_rewarder_authority(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        new_authority: address
+    );
+
+    /// Accept the rewarder authority (pending authority accepts the transfer).
+    /// Params
+    ///     - account The pending rewarder authority
+    ///     - pool_address The address of pool
+    ///     - rewarder_index The rewarder index
+    /// Return
+    ///     null
+    native public fun accept_rewarder_authority(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8
+    );
+
+    /// Update the rewarder duration (protocol authority or rewarder authority).
+    /// Params
+    ///     - account The protocol authority or rewarder authority
+    ///     - pool_address The address of pool
+    ///     - rewarder_index The rewarder index
+    ///     - duration_seconds The new duration in seconds
+    /// Return
+    ///     null
+    native public fun update_rewarder_duration(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        duration_seconds: u128
+    );
+
+    /// Withdraw undistributed reward tokens from a rewarder (authority only).
+    /// Params
+    ///     - account The rewarder authority
+    ///     - pool_address The address of pool
+    ///     - rewarder_index The rewarder index
+    ///     - rewarder_addr The reward asset address
+    ///     - amount The amount to withdraw
+    /// Return
+    ///     The withdrawn FungibleAsset
+    native public fun withdraw_undistributed_reward(
+        account: &signer,
+        pool_address: address,
+        rewarder_index: u8,
+        rewarder_addr: address,
+        amount: u64
+    ): FungibleAsset;
 
 
     // VIEW AND GETTER FUNCTIONS
@@ -420,6 +536,28 @@ module dexlyn_clmm::pool {
     /// pool_address - Pool address.
     /// Returns number of rewarders as `u8`.
     native public fun get_rewarder_len(pool_address: address): u8;
+
+    #[view]
+    /// Get the emission end time for a rewarder.
+    /// pool_address - Pool address.
+    /// rewarder_index - Rewarder index.
+    /// Returns the emission end time (unix seconds) as `u64`.
+    native public fun get_rewarder_emission_end_time(
+        pool_address: address,
+        rewarder_index: u64
+    ): u64;
+
+    #[view]
+    /// Get the current accrued reward amount for a position.
+    /// pool_address - Pool address.
+    /// position_index - Position index.
+    /// rewarder_index - Rewarder index.
+    /// Returns the accrued reward amount as `u64`.
+    native public fun get_rewarder_amount(
+        pool_address: address,
+        position_index: u64,
+        rewarder_index: u8
+    ): u64;
 
     #[view]
     /// Calculate fees for multiple positions in a pool.
